@@ -7,18 +7,35 @@ namespace CreditCards.UITests
 {
     public class CreditCardWebAppShould
     {
+        private const string HomeUrl = "http://localhost:44108/";
+        private const string HomeTitle = "Home Page - Credit Cards";
+
         [Fact, Trait("Category", "Smoke")]
         public void LoadApplicationPage()
         {
             // smoke test
             using (IWebDriver driver = new ChromeDriver())
-            {
-                const string homeUrl = "http://localhost:44108/";
-                driver.Navigate().GoToUrl(homeUrl);
+            { 
+                driver.Navigate().GoToUrl(HomeUrl);
+                DemoHelper.Pause(); 
+                Assert.Equal(HomeTitle, driver.Title);
+                Assert.Equal(HomeUrl, driver.Url);
+            }
+        }
+         
+        [Fact, Trait("Category", "Smoke")]
+        public void ReloadHomePage()
+        {
+            // smoke test
+            using (IWebDriver driver = new ChromeDriver())
+            { 
+                driver.Navigate().GoToUrl(HomeUrl);
                 DemoHelper.Pause();
-                var pageTitle = driver.Title;
-                Assert.Equal("Home Page - Credit Cards", driver.Title);
-                Assert.Equal(homeUrl, driver.Url);
+
+                driver.Navigate().Refresh();
+
+                Assert.Equal(HomeTitle, driver.Title);
+                Assert.Equal(HomeUrl, driver.Url);
             }
         }
     }
