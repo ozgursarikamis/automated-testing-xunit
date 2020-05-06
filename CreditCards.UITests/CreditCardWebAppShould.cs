@@ -8,6 +8,7 @@ namespace CreditCards.UITests
     public class CreditCardWebAppShould
     {
         private const string HomeUrl = "http://localhost:44108/";
+        private const string AboutUrl = "http://localhost:44108/Home/About";
         private const string HomeTitle = "Home Page - Credit Cards";
 
         [Fact, Trait("Category", "Smoke")]
@@ -36,6 +37,23 @@ namespace CreditCards.UITests
 
                 Assert.Equal(HomeTitle, driver.Title);
                 Assert.Equal(HomeUrl, driver.Url);
+            }
+        }
+
+        [Fact, Trait("Category", "Smoke")]
+        public void ReloadHomePageOnBack()
+        { 
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(HomeUrl);
+                DemoHelper.Pause();
+                driver.Navigate().GoToUrl(AboutUrl);
+                driver.Navigate().Back();
+
+                Assert.Equal(HomeTitle, driver.Title);
+                Assert.Equal(HomeUrl, driver.Url);
+
+                // TODO: assert that page was reloaded
             }
         }
     }
