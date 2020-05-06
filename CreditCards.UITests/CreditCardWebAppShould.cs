@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Threading;
+using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -12,11 +13,18 @@ namespace CreditCards.UITests
             // smoke test
             using (IWebDriver driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl("http://localhost:44108/");
-
+                const string homeUrl = "http://localhost:44108/";
+                driver.Navigate().GoToUrl(homeUrl);
+                DemoHelper.Pause();
                 var pageTitle = driver.Title;
-                Assert.Equal("Home Page - Credit Cards", pageTitle);
+                Assert.Equal("Home Page - Credit Cards", driver.Title);
+                Assert.Equal(homeUrl, driver.Url);
             }
         }
+    }
+
+    public class DemoHelper
+    {
+        public static void Pause(int secondsToPause = 3000) => Thread.Sleep(secondsToPause);
     }
 }
