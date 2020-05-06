@@ -1,0 +1,7 @@
+bin
+obj
+packages\
+wwwroot/lib/bootstrap/dist
+wwwroot/lib/jquery/dist
+wwwroot/lib/*/dist
+wwwroot/lib/jquery-validation/dist
