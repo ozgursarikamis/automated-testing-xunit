@@ -1,11 +1,16 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cc8acd58_002D80ee_002D418a_002Dbc59_002D708adaf086d7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BeInitiatedFromHomePage_EasyApplication" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Or&gt;&#xD;
+    &lt;Or&gt;&#xD;
+      &lt;TestAncestor&gt;&#xD;
+        &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeInitiatedFromHomePage_EasyApplication&lt;/TestId&gt;&#xD;
+      &lt;/TestAncestor&gt;&#xD;
+      &lt;TestAncestor&gt;&#xD;
+        &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeInitiatedFromHomePage_CustomerService&lt;/TestId&gt;&#xD;
+      &lt;/TestAncestor&gt;&#xD;
+    &lt;/Or&gt;&#xD;
     &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeInitiatedFromHomePage_EasyApplication&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeInitiatedFromHomePage_CustomerService&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.DisplayProductsAndRates&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
   &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
