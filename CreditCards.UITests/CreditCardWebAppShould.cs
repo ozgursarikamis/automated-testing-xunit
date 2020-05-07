@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Globalization;
+using System.Threading;
 using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -46,6 +47,9 @@ namespace CreditCards.UITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl(HomeUrl);
+                IWebElement generationTokenElement = driver.FindElement(By.Id("GenerationToken"));
+                var initialToken = generationTokenElement.Text;
+
                 DemoHelper.Pause();
                 driver.Navigate().GoToUrl(AboutUrl);
                 driver.Navigate().Back();
@@ -53,7 +57,8 @@ namespace CreditCards.UITests
                 Assert.Equal(HomeTitle, driver.Title);
                 Assert.Equal(HomeUrl, driver.Url);
 
-                // TODO: assert that page was reloaded
+                string reloadedToken = driver.FindElement(By.Id("GenerationToken")).Text;
+                Assert.NotEqual(initialToken, reloadedToken);
             }
         }
         [Fact, Trait("Category", "Smoke")]

@@ -1,6 +1,6 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bddbf13f_002D469f_002D4b35_002D8561_002D0a418a406e8e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="LoadApplicationPage" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=66a267cf_002D04f8_002D4dcc_002Db64e_002D96907677bd2b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ReloadHomePageOnBack" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardWebAppShould&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardWebAppShould.ReloadHomePageOnBack&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
