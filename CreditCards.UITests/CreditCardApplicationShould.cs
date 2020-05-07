@@ -32,7 +32,11 @@ namespace CreditCards.UITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl(HomeUrl);
-                DemoHelper.Pause(11000);
+                DemoHelper.Pause();
+
+                IWebElement carouselNext = driver.FindElement(By.CssSelector("[data-slide='next']"));
+                carouselNext.Click();
+                DemoHelper.Pause(1000); // allow carousel to scroll
 
                 IWebElement applyLink = driver.FindElement(By.LinkText("Easy: Apply Now!"));
                 applyLink.Click();
@@ -41,6 +45,6 @@ namespace CreditCards.UITests
                 Assert.Equal("Credit Card Application - Credit Cards", driver.Title);
                 Assert.Equal(ApplyUrl, driver.Url);
             }
-        }
+        } 
     }
 }
