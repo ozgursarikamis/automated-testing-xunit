@@ -91,7 +91,6 @@ namespace CreditCards.UITests
         [Fact]
         public void BeInitiatedFromHomePage_RandomGreeting()
         {
-
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl(HomeUrl);
@@ -106,5 +105,26 @@ namespace CreditCards.UITests
                 Assert.Equal(ApplyUrl, driver.Url);
             }
         }
+
+        [Fact]
+        public void BeInitiatedFromHomePage_RandomGreeting_Using_XPATH()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(HomeUrl);
+                DemoHelper.Pause();
+
+                IWebElement randomGreetingApplyLink = 
+                    driver.FindElement(By.XPath("/html/body/div/div[4]/div/div/p/a"));
+                randomGreetingApplyLink.Click();
+                DemoHelper.Pause();
+
+                Assert.Equal("Credit Card Application - Credit Cards", driver.Title);
+                Assert.Equal(ApplyUrl, driver.Url);
+            }
+        }
     }
+    // document.querySelector("body > div > div:nth-child(4) > div > p > a")
+    // /html/body/div/div[4]/div/p/a
+    // body > div > div:nth-child(4) > div > p > a
 }
