@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using Xunit;
 
 namespace CreditCards.UITests
@@ -123,8 +125,29 @@ namespace CreditCards.UITests
                 Assert.Equal(ApplyUrl, driver.Url);
             }
         }
+        [Fact]
+        public void BeInitiatedFromHomePage_EasyApplciation()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(HomeUrl);
+                DemoHelper.Pause();
+
+                IWebElement carouselNext =
+                    driver.FindElement(By.CssSelector("[data-slide='next']"));
+                carouselNext.Click();
+
+                WebDriverWait wait = 
+                    new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+                IWebElement applyLink = wait.Until(d => 
+                    d.FindElement(By.LinkText("Easy: Apply Now!")));
+                applyLink.Click();
+
+                DemoHelper.Pause();
+
+                Assert.Equal("Credit Card Application - Credit Cards", driver.Title);
+                Assert.Equal(ApplyUrl, driver.Url);
+            }
+        }
     }
-    // document.querySelector("body > div > div:nth-child(4) > div > p > a")
-    // /html/body/div/div[4]/div/p/a
-    // body > div > div:nth-child(4) > div > p > a
 }
