@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace CreditCards.UITests
 {
@@ -10,6 +11,13 @@ namespace CreditCards.UITests
     {
         private const string HomeUrl = "http://localhost:44108/";
         private const string ApplyUrl = "http://localhost:44108/Apply";
+
+        private readonly ITestOutputHelper _output;
+
+        public CreditCardApplicationShould(ITestOutputHelper output)
+        {
+            _output = output;
+        }
 
         [Fact]
         public void BeInitiatedFromHomePage_NewLowRate()
@@ -54,18 +62,26 @@ namespace CreditCards.UITests
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl(HomeUrl);
-                DemoHelper.Pause();
+                _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Setting Implicit wait");
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(35);
 
-                IWebElement carouselNext = driver.FindElement(By.CssSelector("[data-slide='next']"));
-                carouselNext.Click();
-                DemoHelper.Pause(1000); // allow carousel to scroll
-                carouselNext.Click();
-                DemoHelper.Pause(1000); // allow carousel to scroll
+                _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Navigating to HomeUrl");
+                driver.Navigate().GoToUrl(HomeUrl);
+
+                _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Finding element");
+                
+                //IWebElement carouselNext = driver.FindElement(By.CssSelector("[data-slide='next']"));
+                //carouselNext.Click();
+                //DemoHelper.Pause(1000); // allow carousel to scroll
+                //carouselNext.Click();
+                //DemoHelper.Pause(1000); // allow carousel to scroll
 
                 IWebElement applyLink = driver.FindElement(By.ClassName("customer-service-apply-now"));
                 applyLink.Click();
 
+                _output.WriteLine($"{DateTime.Now.ToLongTimeString()} " +
+                                  $"Finding element Displayed={applyLink.Displayed} Enabled={applyLink.Enabled}");
+                _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Clicking element");
                 DemoHelper.Pause();
 
                 Assert.Equal("Credit Card Application - Credit Cards", driver.Title);
