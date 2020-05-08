@@ -62,26 +62,27 @@ namespace CreditCards.UITests
         {
             using (IWebDriver driver = new ChromeDriver())
             {
-                _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Setting Implicit wait");
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(35);
 
                 _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Navigating to HomeUrl");
                 driver.Navigate().GoToUrl(HomeUrl);
 
-                _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Finding element");
+                _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Finding element using explicit way");
                 
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(35));
+
                 //IWebElement carouselNext = driver.FindElement(By.CssSelector("[data-slide='next']"));
                 //carouselNext.Click();
                 //DemoHelper.Pause(1000); // allow carousel to scroll
                 //carouselNext.Click();
                 //DemoHelper.Pause(1000); // allow carousel to scroll
 
-                IWebElement applyLink = driver.FindElement(By.ClassName("customer-service-apply-now"));
-                applyLink.Click();
+                IWebElement applyLink = wait.Until(d => d.FindElement(By.ClassName("customer-service-apply-now")));
 
                 _output.WriteLine($"{DateTime.Now.ToLongTimeString()} " +
                                   $"Finding element Displayed={applyLink.Displayed} Enabled={applyLink.Enabled}");
                 _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Clicking element");
+                applyLink.Click();
+                
                 DemoHelper.Pause();
 
                 Assert.Equal("Credit Card Application - Credit Cards", driver.Title);
