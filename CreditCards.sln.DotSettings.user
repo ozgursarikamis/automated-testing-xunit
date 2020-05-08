@@ -1,0 +1,6 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ee0e3301_002Dee96_002D4fbd_002D85d7_002Dce1287394a15/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BeInitiatedFromHomePage_EasyApplication_Prebuilt_Conditions" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeInitiatedFromHomePage_EasyApplication_Prebuilt_Conditions&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

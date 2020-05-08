@@ -149,5 +149,29 @@ namespace CreditCards.UITests
                 Assert.Equal(ApplyUrl, driver.Url);
             }
         }
+
+        [Fact]
+        public void BeInitiatedFromHomePage_EasyApplication_Prebuilt_Conditions()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(HomeUrl);
+                DemoHelper.Pause();
+
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(11));
+
+                var element = By.LinkText("Easy: Apply Now!");
+
+                //waits until the 'element' is clicked. if not, there will be timeout.
+                IWebElement applyLink = wait.Until(
+                    ExpectedConditions.ElementToBeClickable(element)
+                );
+                applyLink.Click();
+                
+                DemoHelper.Pause();
+                Assert.Equal("Credit Card Application - Credit Cards", driver.Title);
+                Assert.Equal(ApplyUrl, driver.Url);
+            }
+        }
     }
 }
