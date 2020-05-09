@@ -258,7 +258,7 @@ namespace CreditCards.UITests
 
                 driver.FindElement(By.Id("FirstName")).SendKeys(firstName);
                 // Don't enter lastname
-                driver.FindElement(By.Id("FrequentFlyerNumber")).SendKeys("123456-A");
+                // driver.FindElement(By.Id("FrequentFlyerNumber")).SendKeys("123456-A");
                 driver.FindElement(By.Id("Age")).SendKeys(invalidAge);
                 driver.FindElement(By.Id("GrossAnnualIncome")).SendKeys("50000");
                 driver.FindElement(By.Id("Single")).Click();
