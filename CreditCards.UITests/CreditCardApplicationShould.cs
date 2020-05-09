@@ -44,7 +44,7 @@ namespace CreditCards.UITests
             {
                 driver.Navigate().GoToUrl(HomeUrl);
                 DemoHelper.Pause();
-                 
+
                 IWebElement carouselNext = driver.FindElement(By.CssSelector("[data-slide='next']"));
                 carouselNext.Click();
                 DemoHelper.Pause(1000); // allow carousel to scroll
@@ -68,7 +68,7 @@ namespace CreditCards.UITests
                 driver.Navigate().GoToUrl(HomeUrl);
 
                 _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Finding element using explicit way");
-                
+
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(35));
 
                 //IWebElement carouselNext = driver.FindElement(By.CssSelector("[data-slide='next']"));
@@ -83,7 +83,7 @@ namespace CreditCards.UITests
                                   $"Finding element Displayed={applyLink.Displayed} Enabled={applyLink.Enabled}");
                 _output.WriteLine($"{DateTime.Now.ToLongTimeString()} Clicking element");
                 applyLink.Click();
-                
+
                 DemoHelper.Pause();
 
                 Assert.Equal("Credit Card Application - Credit Cards", driver.Title);
@@ -99,7 +99,7 @@ namespace CreditCards.UITests
                 driver.Navigate().GoToUrl(HomeUrl);
                 DemoHelper.Pause();
 
-                ReadOnlyCollection<IWebElement> tableCells = 
+                ReadOnlyCollection<IWebElement> tableCells =
                     driver.FindElements(By.TagName("td"));
 
                 Assert.Equal("Easy Credit Card", tableCells[0].Text);
@@ -139,7 +139,7 @@ namespace CreditCards.UITests
                 driver.Navigate().GoToUrl(HomeUrl);
                 DemoHelper.Pause();
 
-                IWebElement randomGreetingApplyLink = 
+                IWebElement randomGreetingApplyLink =
                     driver.FindElement(By.XPath("/html/body/div/div[4]/div/div/p/a"));
                 randomGreetingApplyLink.Click();
                 DemoHelper.Pause();
@@ -148,6 +148,7 @@ namespace CreditCards.UITests
                 Assert.Equal(ApplyUrl, driver.Url);
             }
         }
+
         [Fact]
         public void BeInitiatedFromHomePage_EasyApplciation()
         {
@@ -160,9 +161,9 @@ namespace CreditCards.UITests
                     driver.FindElement(By.CssSelector("[data-slide='next']"));
                 carouselNext.Click();
 
-                WebDriverWait wait = 
+                WebDriverWait wait =
                     new WebDriverWait(driver, TimeSpan.FromSeconds(1));
-                IWebElement applyLink = wait.Until(d => 
+                IWebElement applyLink = wait.Until(d =>
                     d.FindElement(By.LinkText("Easy: Apply Now!")));
                 applyLink.Click();
 
@@ -190,10 +191,48 @@ namespace CreditCards.UITests
                     ExpectedConditions.ElementToBeClickable(element)
                 );
                 applyLink.Click();
-                
+
                 DemoHelper.Pause();
                 Assert.Equal("Credit Card Application - Credit Cards", driver.Title);
                 Assert.Equal(ApplyUrl, driver.Url);
+            }
+        }
+
+
+        [Fact]
+        public void BeSubmittedWhenValid()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(ApplyUrl);
+
+                IWebElement firstNameField = driver.FindElement(By.Id("FirstName"));
+                // firstNameField.Text = "Sarah"; // <-- it's readonly.
+                firstNameField.SendKeys("Sarah");
+                // DemoHelper.Pause();
+                driver.FindElement(By.Id("LastName")).SendKeys("Smith");
+                // DemoHelper.Pause();
+                driver.FindElement(By.Id("FrequentFlyerNumber")).SendKeys("123456-A");
+                // DemoHelper.Pause();
+                driver.FindElement(By.Id("Age")).SendKeys("18");
+                // DemoHelper.Pause();
+                driver.FindElement(By.Id("GrossAnnualIncome")).SendKeys("50000");
+
+                IWebElement singleRadio = driver.FindElement(By.Id("Single"));
+                singleRadio.Click();
+
+                IWebElement businessSourceElement = driver.FindElement(By.Id("BusinessSource"));
+                SelectElement businessSource = new SelectElement(businessSourceElement);
+
+                // Check default selected option is correct
+                Assert.Equal("I'd Rather Not Say", businessSource.SelectedOption.Text);
+
+                // get all the available options:
+                foreach (var option in businessSource.Options)
+                    _output.WriteLine($"Value: {option.GetAttribute("value")} Text: {option.Text}");
+
+                DemoHelper.Pause(5000);
+
             }
         }
     }
