@@ -232,14 +232,13 @@ namespace CreditCards.UITests
                     _output.WriteLine($"Value: {option.GetAttribute("value")} Text: {option.Text}");
 
                 Assert.Equal(5, businessSource.Options.Count);
-                businessSource.SelectByText("Internet Search");
-                DemoHelper.Pause();
-
-                businessSource.SelectByValue("Email");
-                DemoHelper.Pause();
-
+                businessSource.SelectByText("Internet Search"); 
+                businessSource.SelectByValue("Email"); 
                 businessSource.SelectByIndex(4);
-                DemoHelper.Pause();
+
+                // checkbox selection:
+                driver.FindElement(By.Id("TermsAccepted")).Click();
+                driver.FindElement(By.Id("SubmitApplication")).Click();
 
                 DemoHelper.Pause(5000);
 
