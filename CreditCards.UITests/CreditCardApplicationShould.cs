@@ -231,6 +231,16 @@ namespace CreditCards.UITests
                 foreach (var option in businessSource.Options)
                     _output.WriteLine($"Value: {option.GetAttribute("value")} Text: {option.Text}");
 
+                Assert.Equal(5, businessSource.Options.Count);
+                businessSource.SelectByText("Internet Search");
+                DemoHelper.Pause();
+
+                businessSource.SelectByValue("Email");
+                DemoHelper.Pause();
+
+                businessSource.SelectByIndex(4);
+                DemoHelper.Pause();
+
                 DemoHelper.Pause(5000);
 
             }
