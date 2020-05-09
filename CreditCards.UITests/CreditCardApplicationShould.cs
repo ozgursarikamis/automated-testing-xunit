@@ -223,7 +223,7 @@ namespace CreditCards.UITests
 
                 IWebElement businessSourceElement = driver.FindElement(By.Id("BusinessSource"));
                 SelectElement businessSource = new SelectElement(businessSourceElement);
-
+                 
                 // Check default selected option is correct
                 Assert.Equal("I'd Rather Not Say", businessSource.SelectedOption.Text);
 
@@ -240,9 +240,8 @@ namespace CreditCards.UITests
                 driver.FindElement(By.Id("TermsAccepted")).Click();
                 //driver.FindElement(By.Id("SubmitApplication")).Click();
                 driver.FindElement(By.Id("Single")).Submit();
-
-                DemoHelper.Pause(5000);
-
+                Assert.StartsWith("Application Complete", driver.Title);
+                Assert.Equal("ReferredToHuman", driver.FindElement(By.Id("Decision")).Text);
             }
         }
     }
