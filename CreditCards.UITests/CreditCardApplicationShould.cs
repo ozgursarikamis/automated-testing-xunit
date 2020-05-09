@@ -223,7 +223,7 @@ namespace CreditCards.UITests
 
                 IWebElement businessSourceElement = driver.FindElement(By.Id("BusinessSource"));
                 SelectElement businessSource = new SelectElement(businessSourceElement);
-                 
+
                 // Check default selected option is correct
                 Assert.Equal("I'd Rather Not Say", businessSource.SelectedOption.Text);
 
@@ -232,8 +232,8 @@ namespace CreditCards.UITests
                     _output.WriteLine($"Value: {option.GetAttribute("value")} Text: {option.Text}");
 
                 Assert.Equal(5, businessSource.Options.Count);
-                businessSource.SelectByText("Internet Search"); 
-                businessSource.SelectByValue("Email"); 
+                businessSource.SelectByText("Internet Search");
+                businessSource.SelectByValue("Email");
                 businessSource.SelectByIndex(4);
 
                 // checkbox selection:
@@ -242,6 +242,57 @@ namespace CreditCards.UITests
                 driver.FindElement(By.Id("Single")).Submit();
                 Assert.StartsWith("Application Complete", driver.Title);
                 Assert.Equal("ReferredToHuman", driver.FindElement(By.Id("Decision")).Text);
+            }
+        }
+
+        [Fact]
+        public void BeSubmittedWhenValidationErrorsCorrected()
+        {
+            const string firstName = "Sarah";
+            const string invalidAge = "17";
+            const string validAge = "18";
+
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(ApplyUrl);
+
+                driver.FindElement(By.Id("FirstName")).SendKeys(firstName);
+                // Don't enter lastname
+                driver.FindElement(By.Id("FrequentFlyerNumber")).SendKeys("123456-A");
+                driver.FindElement(By.Id("Age")).SendKeys(invalidAge);
+                driver.FindElement(By.Id("GrossAnnualIncome")).SendKeys("50000");
+                driver.FindElement(By.Id("Single")).Click();
+                IWebElement businessSourceSelectElement =
+                    driver.FindElement(By.Id("BusinessSource"));
+                SelectElement businessSource = new SelectElement(businessSourceSelectElement);
+                businessSource.SelectByValue("Email");
+                driver.FindElement(By.Id("TermsAccepted")).Click();
+                driver.FindElement(By.Id("SubmitApplication")).Click();
+
+                const string validationSummarySelector = ".validation-summary-errors > ul > li";
+                var validationErrors = driver.FindElements(By.CssSelector(validationSummarySelector));
+
+                // Assert that validation failed
+                Assert.Equal(2, validationErrors.Count);
+                Assert.Equal("Please provide a last name", validationErrors[0].Text);
+                Assert.Equal("You must be at least 18 years old", validationErrors[1].Text);
+
+                // Fix errors 
+                driver.FindElement(By.Id("LastName")).SendKeys("Smith");
+                driver.FindElement(By.Id("Age")).Clear();
+                driver.FindElement(By.Id("Age")).SendKeys(validAge);
+
+                driver.FindElement(By.Id("SubmitApplication")).Click();
+
+                // Check form submitted: 
+                Assert.StartsWith("Application Complete", driver.Title);
+                Assert.Equal("ReferredToHuman", driver.FindElement(By.Id("Decision")).Text);
+                Assert.NotEmpty(driver.FindElement(By.Id("ReferenceNumber")).Text);
+                Assert.Equal("Sarah Smith", driver.FindElement(By.Id("FullName")).Text);
+                Assert.Equal("18", driver.FindElement(By.Id("Age")).Text);
+                Assert.Equal("50000", driver.FindElement(By.Id("Income")).Text);
+                Assert.Equal("Single", driver.FindElement(By.Id("RelationshipStatus")).Text);
+                Assert.Equal("Email", driver.FindElement(By.Id("BusinessSource")).Text);
             }
         }
     }
