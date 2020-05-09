@@ -38,5 +38,10 @@ namespace CreditCards.Controllers
         {
             return View();
         }
+
+        public IActionResult Privacy()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

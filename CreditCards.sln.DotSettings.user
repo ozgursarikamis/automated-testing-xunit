@@ -1,21 +1,14 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=18dac637_002D8fd0_002D4457_002D880b_002D2fe7e01984fc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BeInitiatedFromHomePage_CustomerService" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;Or&gt;&#xD;
-      &lt;Or&gt;&#xD;
-        &lt;TestAncestor&gt;&#xD;
-          &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeInitiatedFromHomePage_CustomerService&lt;/TestId&gt;&#xD;
-        &lt;/TestAncestor&gt;&#xD;
-        &lt;TestAncestor&gt;&#xD;
-          &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.DisplayProductsAndRates&lt;/TestId&gt;&#xD;
-        &lt;/TestAncestor&gt;&#xD;
-      &lt;/Or&gt;&#xD;
-      &lt;TestAncestor&gt;&#xD;
-        &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeSubmittedWhenValid&lt;/TestId&gt;&#xD;
-      &lt;/TestAncestor&gt;&#xD;
-    &lt;/Or&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeSubmittedWhenValidationErrorsCorrected&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeInitiatedFromHomePage_CustomerService&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.DisplayProductsAndRates&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeSubmittedWhenValid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeSubmittedWhenValidationErrorsCorrected&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c02d0166_002Dc1bd_002D46a8_002Da4d1_002D555962c0fd9a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BeSubmittedWhenValidationErrorsCorrected" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A2EF4310-68BC-4141-8396-63DC18B3B9CB::.NETFramework,Version=v4.7.2::CreditCards.UITests.CreditCardApplicationShould.BeSubmittedWhenValidationErrorsCorrected&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
