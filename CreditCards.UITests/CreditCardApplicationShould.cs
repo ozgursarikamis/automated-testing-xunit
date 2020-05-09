@@ -238,7 +238,8 @@ namespace CreditCards.UITests
 
                 // checkbox selection:
                 driver.FindElement(By.Id("TermsAccepted")).Click();
-                driver.FindElement(By.Id("SubmitApplication")).Click();
+                //driver.FindElement(By.Id("SubmitApplication")).Click();
+                driver.FindElement(By.Id("Single")).Submit();
 
                 DemoHelper.Pause(5000);
 
