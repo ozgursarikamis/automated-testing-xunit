@@ -183,6 +183,19 @@ namespace CreditCards.UITests
                 Assert.NotNull(driver.FindElement(By.Id("CookiesBeingUsed")));
             }
         }
+
+        [Fact]
+        public void RenderAboutPage()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(AboutUrl);
+
+                ITakesScreenshot screenShotDriver = (ITakesScreenshot) driver;
+                Screenshot screenShot = screenShotDriver.GetScreenshot();
+                screenShot.SaveAsFile("aboutpage.bmp", ScreenshotImageFormat.Bmp);
+            }
+        }
     } 
 
     public class DemoHelper
