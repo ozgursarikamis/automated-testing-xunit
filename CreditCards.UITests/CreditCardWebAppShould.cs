@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading;
 using Xunit;
 using OpenQA.Selenium;
@@ -122,6 +121,7 @@ namespace CreditCards.UITests
                 Assert.EndsWith("/Home/Contact", driver.Url);
             }
         }
+
         [Fact]
         public void AlertIfLiveChatClosed()
         {
@@ -136,7 +136,51 @@ namespace CreditCards.UITests
 
                 Assert.Equal("Live chat is currently closed.", alert.Text);
                 DemoHelper.Pause();
-                alert.Accept();
+                alert.Accept(); // clicking OK
+            }
+        }
+
+        [Fact]
+        public void NotNavigateToAboutUsWhenCancelClicked()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(HomeUrl);
+                Assert.Equal(HomeTitle, driver.Title);
+
+                driver.FindElement(By.Id("LearnAboutUs")).Click();
+                DemoHelper.Pause();
+
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                IAlert alertBox = wait.Until(ExpectedConditions.AlertIsPresent());
+
+                alertBox.Dismiss(); // clicking cancel
+
+                Assert.Equal(HomeTitle, driver.Title);
+            }
+        }
+        [Fact]
+        public void NotDisplayCookieUseMessage()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(HomeUrl);
+
+                driver.Manage().Cookies.AddCookie(new Cookie("acceptedCookies", "true"));
+                driver.Navigate().Refresh();
+
+                var message = driver.FindElements(By.Id("CookiesBeingUsed"));
+
+                Assert.Empty(message);
+
+                // read cookie:
+                Cookie cookie = driver.Manage().Cookies.GetCookieNamed("acceptedCookies");
+                Assert.Equal("true", cookie.Value);
+
+                driver.Manage().Cookies.DeleteCookieNamed("acceptedCookies");
+                driver.Navigate().Refresh();
+                 
+                Assert.NotNull(driver.FindElement(By.Id("CookiesBeingUsed")));
             }
         }
     } 
