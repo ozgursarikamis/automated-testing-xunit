@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using CreditCards.UITests.PageObjectModel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -97,10 +98,10 @@ namespace CreditCards.UITests
             using (IWebDriver driver = new ChromeDriver())
             {
                 driver.Navigate().GoToUrl(HomeUrl);
+                var homePage = new HomePage(driver);
                 DemoHelper.Pause();
 
-                ReadOnlyCollection<IWebElement> tableCells =
-                    driver.FindElements(By.TagName("td"));
+                ReadOnlyCollection<IWebElement> tableCells = homePage.ProductCells;
 
                 Assert.Equal("Easy Credit Card", tableCells[0].Text);
                 Assert.Equal("20% APR", tableCells[1].Text);
