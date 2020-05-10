@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using ApprovalTests;
 using ApprovalTests.Reporters;
+using CreditCards.UITests.PageObjectModel;
 using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -68,18 +69,15 @@ namespace CreditCards.UITests
         { 
             using (IWebDriver driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl(HomeUrl);
-                IWebElement generationTokenElement = driver.FindElement(By.Id("GenerationToken"));
-                var initialToken = generationTokenElement.Text;
+                var homePage = new HomePage(driver);
+                string initialToken = homePage.GenerationToken;
 
-                DemoHelper.Pause();
                 driver.Navigate().GoToUrl(AboutUrl);
                 driver.Navigate().Back();
 
-                Assert.Equal(HomeTitle, driver.Title);
-                Assert.Equal(HomeUrl, driver.Url);
+                homePage.EnsurePageLoaded();
 
-                string reloadedToken = driver.FindElement(By.Id("GenerationToken")).Text;
+                string reloadedToken = homePage.GenerationToken;
                 Assert.NotEqual(initialToken, reloadedToken);
             }
         }
@@ -126,6 +124,7 @@ namespace CreditCards.UITests
         }
 
         [Fact]
+        [Obsolete]
         public void AlertIfLiveChatClosed()
         {
             using (IWebDriver driver = new ChromeDriver())
@@ -144,6 +143,7 @@ namespace CreditCards.UITests
         }
 
         [Fact]
+        [Obsolete]
         public void NotNavigateToAboutUsWhenCancelClicked()
         {
             using (IWebDriver driver = new ChromeDriver())

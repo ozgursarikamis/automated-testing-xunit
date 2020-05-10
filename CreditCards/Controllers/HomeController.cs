@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CreditCards.Controllers
@@ -13,7 +10,7 @@ namespace CreditCards.Controllers
         {
             string[] randomGreetings = { "Hi", "Hey", "Yo" };
 
-            int rndGreetingIndex = new Random().Next(0, randomGreetings.Length);
+            var rndGreetingIndex = new Random().Next(0, randomGreetings.Length);
 
             ViewData["RandomGreeting"] = randomGreetings[rndGreetingIndex];
 
