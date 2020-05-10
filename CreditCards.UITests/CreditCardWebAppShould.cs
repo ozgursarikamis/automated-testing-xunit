@@ -102,7 +102,25 @@ namespace CreditCards.UITests
                 // TODO: assert that page was reloaded
             }
         }
-    }
+
+        [Fact]
+        public void OpenContactFooterLinkNewTab()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(HomeUrl);
+                driver.FindElement(By.Id("ContactFooter")).Click();
+                DemoHelper.Pause();
+
+                var allTabs = driver.WindowHandles;
+                var homePageTab = allTabs[0];
+                var contactTab = allTabs[1];
+
+                driver.SwitchTo().Window(contactTab); // driver is now new tab's driver
+                Assert.EndsWith("/Home/Contact", driver.Url);
+            }
+        }
+    } 
 
     public class DemoHelper
     {
