@@ -1,8 +1,10 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Threading;
 using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace CreditCards.UITests
 {
@@ -118,6 +120,23 @@ namespace CreditCards.UITests
 
                 driver.SwitchTo().Window(contactTab); // driver is now new tab's driver
                 Assert.EndsWith("/Home/Contact", driver.Url);
+            }
+        }
+        [Fact]
+        public void AlertIfLiveChatClosed()
+        {
+            using (IWebDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl(HomeUrl);
+
+                driver.FindElement(By.Id("LiveChat")).Click();
+
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+                IAlert alert = wait.Until(ExpectedConditions.AlertIsPresent());
+
+                Assert.Equal("Live chat is currently closed.", alert.Text);
+                DemoHelper.Pause();
+                alert.Accept();
             }
         }
     } 
